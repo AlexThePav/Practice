@@ -3,8 +3,7 @@ try:
 except ImportError:
     import Tkinter as tkinter
 
-colors = ["Black", "White"]
-coordinates = [["1", "2", "3", "4", "5", "6", "7", "8"], ["a", "b", "c", "d", "e", "f", "g", "h"]]
+coordinates = [[1, 2, 3, 4, 5, 6, 7, 8], ["a", "b", "c", "d", "e", "f", "g", "h"]]
 
 mainWindowPadding = 10
 
@@ -16,18 +15,21 @@ mainWindow['padx'] = mainWindow['pady'] = mainWindowPadding
 chessPad = tkinter.Frame(mainWindow)
 chessPad.grid(row=0, column=0, sticky="nsew")
 
-color = "Black"
 row = 0
 for sqRow in coordinates[0]:
-    for black in range(0, 9, 2):
-        if color == "Black":
-            tkinter.Button(chessPad, text=colors[0]).grid(column=black, row=row, sticky="nsew")
-            color = "White"
-        else:
-            tkinter.Button(chessPad, text=colors[1]).grid(column=black, row=row, sticky="nsew")
-            color = "Black"
-    # for white in range(1, 9, 2):
-    #     tkinter.Button(chessPad, text=colors[1]).grid(column=white, row=row, sticky="nsew")
+    if sqRow % 2 != 0:
+        for cell in range(0, 8):
+            if cell % 2 == 0:
+                tkinter.Button(chessPad, text="Black").grid(column=cell, row=row, sticky="nsew")
+            else:
+                tkinter.Button(chessPad, text="White").grid(column=cell, row=row, sticky="nsew")
+    else:
+        for cell in range(0, 8):
+            if cell % 2 == 1:
+                tkinter.Button(chessPad, text="Black").grid(column=cell, row=row, sticky="nsew")
+            else:
+                tkinter.Button(chessPad, text="White").grid(column=cell, row=row, sticky="nsew")
+
     row += 1
 
 mainWindow.mainloop()
