@@ -16,12 +16,18 @@ mainWindow['padx'] = mainWindow['pady'] = mainWindowPadding
 chessPad = tkinter.Frame(mainWindow)
 chessPad.grid(row=0, column=0, sticky="nsew")
 
+color = "Black"
 row = 0
 for sqRow in coordinates[0]:
     for black in range(0, 9, 2):
-        tkinter.Button(chessPad, text=colors[0]).grid(column=black, row=row, sticky="nsew")
-    for white in range(1, 9, 2):
-        tkinter.Button(chessPad, text=colors[1]).grid(column=white, row=row, sticky="nsew")
+        if color == "Black":
+            tkinter.Button(chessPad, text=colors[0]).grid(column=black, row=row, sticky="nsew")
+            color = "White"
+        else:
+            tkinter.Button(chessPad, text=colors[1]).grid(column=black, row=row, sticky="nsew")
+            color = "Black"
+    # for white in range(1, 9, 2):
+    #     tkinter.Button(chessPad, text=colors[1]).grid(column=white, row=row, sticky="nsew")
     row += 1
 
 mainWindow.mainloop()
